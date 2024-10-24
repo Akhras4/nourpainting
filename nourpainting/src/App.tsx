@@ -7,6 +7,7 @@ function App() {
 
   return (
  <>
+
  <div className='grain-noise'></div>
  <Home ></Home>
  </>

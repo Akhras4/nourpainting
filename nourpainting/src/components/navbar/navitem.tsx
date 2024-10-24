@@ -1,30 +1,78 @@
-import React from "react"
-import './nav.sass'
-interface NavItemProps{
-    name:string;
-    // video:string
+import React, {  useEffect, useRef } from "react";
+import './nav.sass';
+
+
+interface NavItemProps {
+    name: string;
+    link:string;
+    videoSrc:string
 }
 
-const Navitem:React.FC<NavItemProps> =({
+const Navitem: React.FC<NavItemProps> = ({ name,link,videoSrc }) => {
+    const navItemRef = useRef<HTMLDivElement | null>(null);
+    const logoItemRef = useRef<HTMLDivElement | null>(null);  
+    const videoRef = useRef<HTMLVideoElement | null>(null); 
+    const navItem = name === "logo" ? logoItemRef : navItemRef;
+    const mouseEnter = () => {
+        if (videoRef.current) {
+            videoRef.current.play(); 
+        }
+    };
 
-    name,
-    // video
-})=>{
-return(
-    <>
-        <div className="NavItemCon">
-            <h1 className="NavItemText">{name}</h1>
+    const mouseLeave = () => {
+        if (videoRef.current) {
+            videoRef.current.pause(); 
+            videoRef.current.currentTime = 0; 
+        }
+    };
+
+    useEffect(() => {
+        
+            const currentNavItem = navItemRef.current; 
+            const currentNavItemLogo = logoItemRef.current; 
+            const video = videoRef.current; 
+            if (currentNavItemLogo && video) {
+                video.play(); 
+            }
+
+
+        if (currentNavItem) {
+            currentNavItem.addEventListener('mouseenter', mouseEnter);
+            currentNavItem.addEventListener('mouseleave', mouseLeave);
+        }
+
+
+        return () => {
+            if (currentNavItem) {
+                currentNavItem.removeEventListener('mouseenter', mouseEnter);
+                currentNavItem.removeEventListener('mouseleave', mouseLeave);
+            }
+        };
+    }, [navItem]);
+
+    return (
+
+        <a href={link}>
+        <div className="NavItemCon" ref={navItem}>
+            <div className="contentWrapper">
+                <div className="textWrapper">
+                    <h1 className="NavItemText">{name}</h1>
+                    <h1 className="NavItemText secondary" >{name}</h1>
+                </div>
+            </div>
             <div className="bg"></div>
             <video
+                ref={videoRef} 
                 className="NavItemVideo"
-                src="https://player.vimeo.com/progressive_redirect/playback/1020110752/rendition/360p/file.mp4?loc=external&signature=310e20745ec15c295a25ea6ca6801e63e4f335e8d0d7dfe1a55b8547257a07d7"
-                autoPlay
+                src={videoSrc}
                 muted
                 loop
-                controls={false}  // Optional: hide the controls if you don't need them
-                ></video>
+                controls={false}  
+            />
         </div>
-    </>
-)
-}
-export default Navitem
+        </a>
+    );
+};
+
+export default Navitem;
+

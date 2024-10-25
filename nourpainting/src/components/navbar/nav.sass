@@ -1,7 +1,7 @@
 header
     display: flex
     flex-wrap: nowrap
-    gap:3rem
+    gap:1rem
     width: 100vw
     height: fit-content
     background-color: transparent
@@ -11,7 +11,7 @@ header
 nav 
     display: flex
     flex-wrap: nowrap
-    gap:2rem
+    gap:1rem
     width: 100vw
     height: fit-content
     background-color: transparent
@@ -48,7 +48,7 @@ nav
   flex-direction: column 
   align-items: center
   justify-content: center
-  height: 150% 
+  height: 130% 
   z-index: 4
 
 .NavItemText
@@ -99,7 +99,8 @@ nav
       
 @media screen and ( max-width:800px)
   .NavItemWrpper.logo
-    width: 30%
+    width: 300px
+    min-width:200px
     height: 250px
     opacity: 1 
   nav
@@ -156,11 +157,11 @@ nav
   .contentWrapper:hover .NavItemText:not(.openNav)
     opacity: 1 
     scale: 2
-    transform: translate(50%)  
+    transform: translateY(-10%)  
   .NavItemText.secondary
     display: none    
   .NavItemCon
-      margin-top: 10px 
+    margin-top: 10px 
   
   .close 
     display: flex 
@@ -185,4 +186,30 @@ nav
   .NavItemWrpper
     height: 15%
 
-       
+@media screen and ( max-width:450px) 
+  .NavItemWrpper.logo
+    width: 150px
+    min-width: 150px
+    height: 100px
+  .close 
+    font-size: 1.2rem
+    padding-right: 1rem
+    margin-top: 0.5rem
+  .openmenue
+    font-size: 1.2rem
+    padding-right: 2rem
+    margin-top: 0rem 
+  .circle
+    margin-top: .7rem 
+    width: 0.6rem 
+    height: 0.6rem     
+
+@media screen and ( max-width:380px) 
+  header
+    gap:1rem
+@media screen and ( max-width:380px) 
+  header
+    gap:0rem 
+  .NavItemWrpper.logo
+    width: 200px
+    min-width:150px         

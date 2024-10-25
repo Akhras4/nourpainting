@@ -3,6 +3,10 @@ import './home.sass'
 import Nav from "../../components/navbar/nav"
 import homeContent from '../../content/homecontent'
 import SideText from '../../components/sideText/sidetext'
+import HomeTextSvg from "../../components/texts/hometextsvg"
+import BrandingVideo from "../../components/brandingvideo/brandingvideo"
+import HomeTextGoodAt from "../../components/texts/hometextgoodat"
+import ServiceItem from "../../components/services/services"
 const Home:React.FC=()=>{
 return(
     <div className="section1">
@@ -26,8 +30,16 @@ return(
         />
       </div>
     </div>
+    <div className="section2">
         <Nav></Nav>
         <SideText text={homeContent.text} />
+        <HomeTextSvg />
+    </div>   
+        <BrandingVideo  videoSrc={homeContent.videoBranding}/>
+        <div>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores eum maiores repellendus dolor error tempore mollitia accusamus praesentium laboriosam quam? Vero neque id velit illum animi minima nihil. At, dolorem?</div>
+        <HomeTextGoodAt  />
+        <SideText text={homeContent.servicesText} isServicesText={true} />
+        <ServiceItem service={homeContent.services} />
 
     </div>
 )

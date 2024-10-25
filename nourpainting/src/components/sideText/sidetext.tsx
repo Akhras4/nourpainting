@@ -5,15 +5,16 @@ import './sideText.sass'
 
 interface sideTextProps {
     text: string[];
+    isServicesText?: boolean;
 }
 
-const SideText:React.FC<sideTextProps>=({text})=>{
+const SideText:React.FC<sideTextProps>=({text,isServicesText})=>{
     return (
         <div className="sideTextCon">
-        <div className="right"></div>
+        <div className="left"></div>
         <div className="right">
             {text.map((text, index) => (
-                <div className="sideText" key={index}>{text}</div>
+                <div className={`sideText ${isServicesText ? 'servicesTextColor' : ''}`} key={index}>{text}</div>
             ))}
         </div>
         </div>

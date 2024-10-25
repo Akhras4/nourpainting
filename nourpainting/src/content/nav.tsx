@@ -2,13 +2,15 @@ import logoVideoSrc from '../assets/videos/nav/logo.mp4';
 import workVideoSrc from '../assets/videos/nav/work.mp4';
 import servicesVideoSrc from '../assets/videos/nav/nav-work.mp4';
 import contactVideoSrc from '../assets/videos/nav/contact.mp4';
+const LogoContent={
 
-const NavContent = {
-  logo: {
     name: "logo",
     link: "",
     videoSrc: logoVideoSrc
-  },
+
+}
+
+const NavContent = {
   work: {
     name: "work",
     link: "",
@@ -19,8 +21,8 @@ const NavContent = {
     link: "",
     videoSrc: servicesVideoSrc
   },
-  services1: {
-    name: "services",
+  team: {
+    name: "Team",
     link: "",
     videoSrc: servicesVideoSrc
   },
@@ -30,5 +32,5 @@ const NavContent = {
     videoSrc: contactVideoSrc
   }
 };
+export { NavContent, LogoContent };
 
-export default NavContent;

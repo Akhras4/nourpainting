@@ -1,78 +1,86 @@
-import React, {  useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import './nav.sass';
-
+import useMedia from 'use-media';
 
 interface NavItemProps {
     name: string;
-    link:string;
-    videoSrc:string
+    link: string;
+    videoSrc: string;
 }
 
-const Navitem: React.FC<NavItemProps> = ({ name,link,videoSrc }) => {
+const Navitem: React.FC<NavItemProps> = ({ name, link, videoSrc }) => {
     const navItemRef = useRef<HTMLDivElement | null>(null);
-    const logoItemRef = useRef<HTMLDivElement | null>(null);  
-    const videoRef = useRef<HTMLVideoElement | null>(null); 
-    const navItem = name === "logo" ? logoItemRef : navItemRef;
+    const logoItemRef = useRef<HTMLDivElement | null>(null);
+    const videoRef = useRef<HTMLVideoElement | null>(null);
+    const isWide = useMedia({ maxWidth: '800px' });
+
+    const isLogoItem = name === "logo"; //logo name chang it 
+
     const mouseEnter = () => {
-        if (videoRef.current) {
-            videoRef.current.play(); 
+        if (!isLogoItem && videoRef.current) {
+            videoRef.current.play();
         }
     };
 
     const mouseLeave = () => {
-        if (videoRef.current) {
-            videoRef.current.pause(); 
-            videoRef.current.currentTime = 0; 
+        if (!isLogoItem && videoRef.current) {
+            videoRef.current.pause();
+            videoRef.current.currentTime = 0;
         }
     };
 
     useEffect(() => {
-        
-            const currentNavItem = navItemRef.current; 
-            const currentNavItemLogo = logoItemRef.current; 
-            const video = videoRef.current; 
-            if (currentNavItemLogo && video) {
-                video.play(); 
-            }
+        const currentNavItem = isLogoItem ? logoItemRef.current : navItemRef.current;
+        const video = videoRef.current;
+        if (isLogoItem && video) {
+            video.play();
+        }
 
-
-        if (currentNavItem) {
+        if (currentNavItem && !isWide) {
             currentNavItem.addEventListener('mouseenter', mouseEnter);
             currentNavItem.addEventListener('mouseleave', mouseLeave);
         }
 
-
         return () => {
-            if (currentNavItem) {
+            if (currentNavItem && !isWide) {
                 currentNavItem.removeEventListener('mouseenter', mouseEnter);
                 currentNavItem.removeEventListener('mouseleave', mouseLeave);
             }
         };
-    }, [navItem]);
+    }, [isWide, isLogoItem]);
+
+    useEffect(() => {
+        if (videoRef.current) {
+            if (isWide) {
+                videoRef.current.play();
+            } else if (!isLogoItem) {
+                videoRef.current.pause();
+                videoRef.current.currentTime = 0;
+            }
+        }
+    }, [isWide, isLogoItem]);
 
     return (
-
         <a href={link}>
-        <div className="NavItemCon" ref={navItem}>
-            <div className="contentWrapper">
-                <div className="textWrapper">
-                    <h1 className="NavItemText">{name}</h1>
-                    <h1 className="NavItemText secondary" >{name}</h1>
+            <div className="NavItemCon" ref={isLogoItem ? logoItemRef : navItemRef}>
+                <div className="contentWrapper">
+                    <div className="textWrapper">
+                        <h1 className="NavItemText">{name}</h1>
+                        <h1 className="NavItemText secondary">{name}</h1>
+                    </div>
                 </div>
+                <div className="bg"></div>
+                <video
+                    ref={videoRef}
+                    className="NavItemVideo"
+                    src={videoSrc}
+                    muted
+                    loop
+                    controls={false}
+                />
             </div>
-            <div className="bg"></div>
-            <video
-                ref={videoRef} 
-                className="NavItemVideo"
-                src={videoSrc}
-                muted
-                loop
-                controls={false}  
-            />
-        </div>
         </a>
     );
 };
 
 export default Navitem;
-

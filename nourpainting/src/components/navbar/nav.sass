@@ -1,16 +1,27 @@
-nav
+header
     display: flex
     flex-wrap: nowrap
-    justify-content: space-evenly
+    gap:3rem
     width: 100vw
     height: fit-content
     background-color: transparent
-    gap:30px
+    margin-inline: 1rem
+
+  
+nav 
+    display: flex
+    flex-wrap: nowrap
+    gap:2rem
+    width: 100vw
+    height: fit-content
+    background-color: transparent
+    margin-bottom:10rem
+    z-index: 1000 
         
         
-.NavItemWrpper
-    width: 16%
-    height: 200px
+.NavItemWrpper 
+    width: 22%
+    height: 250px
     opacity: 1
 
 .NavItemCon
@@ -81,5 +92,97 @@ nav
     z-index: 1
     border-radius: 20px
 
+.openmenue
+   display: none 
+.close
+   display: none
+      
+@media screen and ( max-width:800px)
+  .NavItemWrpper.logo
+    width: 30%
+    height: 250px
+    opacity: 1 
+  nav
+    display: none
+  .openmenue
+    display: flex 
+    justify-content: center
+    align-items: center
+    gap:1rem
+    color: #007bff 
+    cursor: pointer 
+    z-index: 1000
+    position: relative 
+    padding-right: 4.5rem
+    margin-top: -6.5rem
+    font-size: 2rem
+  
+
+  header
+    margin: 0rem
+    overflow-y:auto 
+    display: flex
+    justify-content: space-between
+  .NavItemWrpper.openNav
+      position: fixed
+      z-index: 1001
+      inset: 0
+      width: 150px
+      height: 100px
+      opacity: 1
+  nav.openNav
+    display: block
+    position: fixed
+    width: 100vw
+    height: 80vh
+    min-height:400px 
+    background-color: white
+    margin: 0rem
+    overflow-y: scroll
+    padding-bottom: 10rem 
+    z-index: 1000 
     
+  h2
+    text-align: right
+    margin-top: 2rem
+  .NavItemWrpper
+      width: 90vw
+      height: 20%
+      opacity: 1
+      padding: 0 1rem
+      
+  .textWrapper
+    height: 100%
+  .contentWrapper:hover .NavItemText:not(.openNav)
+    opacity: 1 
+    scale: 2
+    transform: translate(50%)  
+  .NavItemText.secondary
+    display: none    
+  .NavItemCon
+      margin-top: 10px 
+  
+  .close 
+    display: flex 
+    justify-content: flex-end
+    align-items: center
+    gap:1rem
+    color: #007bff 
+    cursor: pointer 
+    z-index: 1000
+    position: relative 
+    padding-right: 3rem
+    font-size: 2rem
+  .circle
+    width: 1rem 
+    height: 1rem 
+    background-color: #00b7ff 
+    border-radius: 50% 
+    margin-right: 0.5rem
+  
+    
+@media screen and ( max-height:475px ) and (max-width: 500px)  
+  .NavItemWrpper
+    height: 15%
+
        

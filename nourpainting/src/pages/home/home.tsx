@@ -1,6 +1,8 @@
 import React from "react"
 import './home.sass'
 import Nav from "../../components/navbar/nav"
+import homeContent from '../../content/homecontent'
+import SideText from '../../components/sideText/sidetext'
 const Home:React.FC=()=>{
 return(
     <div className="section1">
@@ -25,6 +27,7 @@ return(
       </div>
     </div>
         <Nav></Nav>
+        <SideText text={homeContent.text} />
 
     </div>
 )

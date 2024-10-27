@@ -15,10 +15,10 @@ const ServiceItem:React.FC<ServiceItemProps>=({service})=>{
     return (
         <>
         <div className="service-item">
-      {Object.values(service).map((item, index) => (
-        <Navitem key={index}  {...item} />
-      ))}
-    </div>
+        {Object.values(service).map((item, index) => (
+            <Navitem key={index}  {...item} />
+        ))}
+        </div>
         </>
         );
 }

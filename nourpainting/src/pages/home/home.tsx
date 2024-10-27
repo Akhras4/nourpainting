@@ -7,6 +7,7 @@ import HomeTextSvg from "../../components/texts/hometextsvg"
 import BrandingVideo from "../../components/brandingvideo/brandingvideo"
 import HomeTextGoodAt from "../../components/texts/hometextgoodat"
 import ServiceItem from "../../components/services/services"
+import GridClient from "../../components/griditems/gridClint"
 const Home:React.FC=()=>{
 return(
     <div className="section1">
@@ -40,6 +41,7 @@ return(
         <HomeTextGoodAt  />
         <SideText text={homeContent.servicesText} isServicesText={true} />
         <ServiceItem service={homeContent.services} />
+        <GridClient gridClient={homeContent.clientlogos} />
 
     </div>
 )

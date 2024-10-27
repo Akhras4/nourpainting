@@ -1,0 +1,46 @@
+.grid-client
+    display: grid
+    width: 100vw
+    height: 50vh
+    gap: 1rem
+    grid-template-columns: repeat(4, 20vw)
+    grid-template-rows: auto
+    justify-content: center
+    overflow: hidden
+    padding: 1rem
+    box-sizing: border-box
+
+.grid-item
+    background-color: #3505e9
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    position: relative
+
+.animated-image
+    display: flex
+    justify-content: center
+    position: absolute    
+
+img
+    width: 80%
+    height: 80%
+    object-fit: cover
+
+@media screen and (max-width: 768px)
+    .grid-client
+        height: 100vh
+        grid-template-columns: repeat(2, 40vw)
+        grid-template-rows: repeat(2, auto)
+        gap: 1rem
+
+    .grid-item
+        height: auto
+        width: 100%
+        display: flex
+        justify-content: center
+        align-items: center
+        position: relative       
+
+  

@@ -1,13 +1,18 @@
 .contact-bar
     display: flex
     flex-direction: row
-    justify-content: space-between
+    justify-content: flex-start
+    gap:1rem
     align-content: center
     margin-top: 2rem
     margin-right: 3rem 
 .contact-bar img
     width: 50px
     height: 70px
+.contact-bar__info
+    display: flex
+    flex-direction: column    
+    justify-content: flex-start
 .contact-bar a
     white-space: wrap
     color: #00fff0
@@ -16,8 +21,16 @@
     z-index: 1001 !important
     cursor: pointer
     position: relative
+
     
-    
+@media screen and ( max-width:700px) 
+    .contact-bar img
+      margin-right: 1rem
+    .contact-bar
+        justify-content: flex-start
+
+     
+
 
   
 

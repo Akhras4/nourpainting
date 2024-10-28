@@ -17,14 +17,16 @@ const ContactBar:React.FC<contactBarProps>=({
     return (
     <div className="contact-bar">
         <img src={imgSrc}/>
+        <div className="contact-bar__info">
         <div>
-                <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+            <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
                     {telfoneNumbar}
-                </a>
-            </div>
-            <div>
-                <a href={`mailto:${eamilAddress}`}>{eamilAddress}</a>
-            </div>
+            </a>
+        </div>
+        <div>
+             <a href={`mailto:${eamilAddress}`}>{eamilAddress}</a>
+        </div>
+        </div>
     </div>
     )
 }

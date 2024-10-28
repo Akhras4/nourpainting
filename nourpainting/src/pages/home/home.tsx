@@ -8,8 +8,15 @@ import BrandingVideo from "../../components/brandingvideo/brandingvideo"
 import HomeTextGoodAt from "../../components/texts/hometextgoodat"
 import ServiceItem from "../../components/services/services"
 import GridClient from "../../components/griditems/gridClint"
+import FooterContactText from "../../components/texts/footerContactText"
+import FooterInfo from "../../components/footer/footer"
+
+
+
 const Home:React.FC=()=>{
+ 
 return(
+  <div>
     <div className="section1">
          <div className="background-hero" style={{ willChange: 'opacity', opacity: 1 }}>
       <div className="gradient-background hero">
@@ -42,7 +49,14 @@ return(
         <SideText text={homeContent.servicesText} isServicesText={true} />
         <ServiceItem service={homeContent.services} />
         <GridClient gridClient={homeContent.clientlogos} />
+        
 
+    </div>
+    <footer>
+          <FooterContactText />
+          <SideText  text={homeContent.servicesText} contactBarProps={homeContent.contactBar} />
+          <FooterInfo />
+        </footer>
     </div>
 )
 }

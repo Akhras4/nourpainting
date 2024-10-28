@@ -12,10 +12,10 @@ const HomeTextGoodAt: React.FC = () => {
                         </path>
                     </svg>
                     </div>
-                    <div className="heading-style-h1 text-color-primary">WHAT WE’RE</div>
+                    <div >WHAT WE’RE</div>
                     </div>
                     <div data-w-id="fe78f2ff-36bb-86b0-c232-b8660cca6606" className="service-title-second">
-                        <div className="heading-style-h1 text-color-primary">GOOD AT</div>
+                        <div >GOOD AT</div>
                     </div>
                         </div>
                     </>

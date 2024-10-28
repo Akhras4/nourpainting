@@ -10,6 +10,7 @@ import Nedap from '../assets/imges/clientlogos/Nedap.svg'
 import Samsung from '../assets/imges/clientlogos/Samsung.svg'
 import TailorSteel from '../assets/imges/clientlogos/TailorSteel.svg'
 import Talpa from '../assets/imges/clientlogos/Talpa.svg'
+import contactImg from '../assets/imges/1692590430013.jpg'
 
 
 
@@ -80,7 +81,12 @@ const homeContent={
             initialX:0
             
 
-        },
-    }
+        }
+    },
+    contactBar : {
+      imgSrc: contactImg, 
+      telfoneNumbar: "06 16692843", 
+      eamilAddress: "abdoakhras4@gmail.com" 
+  }
 }
 export default homeContent

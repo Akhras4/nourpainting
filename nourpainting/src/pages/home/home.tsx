@@ -10,6 +10,7 @@ import ServiceItem from "../../components/services/services"
 import GridClient from "../../components/griditems/gridClint"
 import FooterContactText from "../../components/texts/footerContactText"
 import FooterInfo from "../../components/footer/footer"
+import MovingLines from "../../components/movinglines/movinglines"
 
 
 
@@ -49,14 +50,14 @@ return(
         <SideText text={homeContent.servicesText} isServicesText={true} />
         <ServiceItem service={homeContent.services} />
         <GridClient gridClient={homeContent.clientlogos} />
-        
-
+        <MovingLines />
+    
     </div>
     <footer>
           <FooterContactText />
           <SideText  text={homeContent.servicesText} contactBarProps={homeContent.contactBar} />
           <FooterInfo />
-        </footer>
+    </footer>
     </div>
 )
 }

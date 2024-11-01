@@ -9,7 +9,7 @@ interface WorkCellProps {
     videoSrc: string;
 }
 
-const WorkCell: React.FC<WorkCellProps> = ({ posterImg, name, title, videoSrc }) => {
+const WorkCell: React.FC<WorkCellProps> = ({ posterImg, name, videoSrc }) => {
     const [isHovered, setIsHovered] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
 

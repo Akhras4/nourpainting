@@ -1,0 +1,57 @@
+.work-cell__poster video.hide
+     display: none
+.work-cell__poster video.show      
+    display: block
+.work-cell
+    width: 30vw
+    height: 80vh
+    position: relative
+    z-index: 1003
+    border-radius: 30px
+    & .case
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        align-content: center
+        position: absolute
+        bottom: 0
+        z-index: 1003
+        width: 100%
+        & .name,.title
+            font-weight: 700
+            font-family: Plusjakartasans Variable, Arial, sans-serif
+            font-size: calc(2rem + 3vw)
+            max-font-size: 5rem 
+            letter-spacing: 0.1rem
+        & .name    
+            justify-self: flex-end
+            color: #00fff0
+    & img
+        position: absolute
+        inset: 0
+        z-index: 1000
+        width: 100%
+        height: 100%
+        object-fit: cover
+        border-radius: 30px
+    & video
+        position: absolute
+        inset: 0
+        z-index: 1000
+        width: 100%
+        height: 100% 
+        object-fit: cover
+        border-radius: 30px 
+@media screen and (max-width:900px)
+    .work-cell
+        width: 40vw 
+@media screen and (max-width:800px) 
+    .work-cell
+        width: 50vw
+@media screen and (max-width:400px)
+    .work-cell
+        width:80vw 
+
+    
+         

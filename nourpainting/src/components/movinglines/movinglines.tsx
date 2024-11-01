@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import './movinglines.sass'; 
+import Cases from '../casses/casses'; // Adjust the import path as necessary
+import './movinglines.sass';
 
-const MovingLines: React.FC = () => {
+const MovingLines: React.FC<{ workCells: any }> = ({ workCells }) => { // Expecting workCells as a prop
   const [scrollProgress, setScrollProgress] = useState(0);
   const targetRef = useRef<HTMLDivElement | null>(null);
 
@@ -32,9 +33,8 @@ const MovingLines: React.FC = () => {
   ];
 
   return (
-    <div className="container"
-    >
-      <div ref={targetRef} className="target">
+    <div className="moving-lines-container">
+      <div ref={targetRef} className="moving-lines-target">
         {lines.map((text, index) => (
           <div key={index} className="line-wrapper">
             <motion.div
@@ -45,14 +45,17 @@ const MovingLines: React.FC = () => {
               }}
               transition={{ type: 'tween', ease: 'easeOut' }}
               style={{
-                opacity:(index % 2 === 0 ? (Math.max(scrollProgress) + 0.3) : (Math.max(scrollProgress) - 0.3)),
-                color:(index % 2 === 0 ? "black" : "#00fff0")
-            }}
+                opacity: (index % 2 === 0 ? (Math.max(scrollProgress) + 0.6) : (Math.max(scrollProgress) - 0.3)),
+                color: (index % 2 === 0 ? "#3505e9" : "#00fff0"),
+              }}
             >
               {text}
             </motion.div>
           </div>
         ))}
+      </div>
+      <div className="cases-layer">
+        <Cases workCells={workCells} />
       </div>
     </div>
   );

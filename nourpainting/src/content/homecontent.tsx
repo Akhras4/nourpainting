@@ -13,6 +13,14 @@ import Talpa from '../assets/imges/clientlogos/Talpa.svg'
 import contactImg from '../assets/imges/1692590430013.jpg'
 
 
+import workCell_tvc from '../assets/imges/work/TVC_WT.webp'
+import workCell_knap from '../assets/imges/work/Knab_header.webp'
+import workCell_veno from '../assets/imges/work/vano.webp'
+
+import workCell_veno_v  from '../assets/videos/cases/Vano.webm'
+
+
+
 
 
 const homeContent={
@@ -87,6 +95,32 @@ const homeContent={
       imgSrc: contactImg, 
       telfoneNumbar: "06 16692843", 
       eamilAddress: "abdoakhras4@gmail.com" 
-  }
+  },
+  workCells:{
+    tvc:{
+        posterImg:workCell_tvc,
+        name:"WerkTalent",
+        title:"tvc",
+        videoSrc:tcl,
+  },
+    knab:{
+        posterImg:workCell_knap,
+        name:"Knab",
+        title:"knab",
+        videoSrc:trends,
+    },
+    veno:{
+        posterImg:workCell_veno,
+        name:"Veno",
+        title:"veno",
+        videoSrc:workCell_veno_v,
+    },
+    knab1:{
+        posterImg:workCell_knap,
+        name:"knab",
+        title:"knab",
+        videoSrc:trends,
+    }
+}
 }
 export default homeContent

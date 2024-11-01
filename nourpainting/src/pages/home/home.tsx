@@ -11,6 +11,7 @@ import GridClient from "../../components/griditems/gridClint"
 import FooterContactText from "../../components/texts/footerContactText"
 import FooterInfo from "../../components/footer/footer"
 import MovingLines from "../../components/movinglines/movinglines"
+import Cases from "../../components/casses/casses" 
 
 
 
@@ -50,8 +51,7 @@ return(
         <SideText text={homeContent.servicesText} isServicesText={true} />
         <ServiceItem service={homeContent.services} />
         <GridClient gridClient={homeContent.clientlogos} />
-        <MovingLines />
-    
+        <MovingLines workCells={homeContent.workCells} />
     </div>
     <footer>
           <FooterContactText />

@@ -4,6 +4,7 @@
   width: 100%
   z-index: 1010
   margin: 0 2rem 
+  padding-right: 2rem
 .slider
   display: flex
   justify-content: space-evenly
@@ -11,15 +12,18 @@
   overflow-x: auto
   scroll-behavior: smooth
   height: 100%
+  padding-right: 4rem
 
   &::-webkit-scrollbar
     display: none
 @media screen and (max-width:800px) 
     .slider
-        gap:3rem
+        gap:2rem
+        padding-right: 2rem
 @media screen and (max-width:400px)
     .slider
         gap:1rem
+        padding-right: 1rem    
     .cases-con
         margin: 0 1rem 
 

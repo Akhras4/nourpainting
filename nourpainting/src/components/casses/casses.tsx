@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import './casses.sass'; 
 import WorkCell from "../../components/workcell/workcell";
 
@@ -19,16 +19,16 @@ const Cases: React.FC<CasesProps> = ({ workCells }) => {
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
+  const isMobile = window.innerWidth < 768; // Adjust breakpoint as needed
 
-  // Desktop Mouse Handlers
   const handleMouseDown = (e: React.MouseEvent) => {
-    if (sliderRef.current) {
-      startX.current = e.clientX - sliderRef.current.offsetLeft;
-      scrollLeft.current = sliderRef.current.scrollLeft;
-      sliderRef.current.addEventListener('mousemove', handleMouseMove);
-      sliderRef.current.addEventListener('mouseup', handleMouseUp);
-      sliderRef.current.addEventListener('mouseleave', handleMouseUp);
-    }
+    if (isMobile || !sliderRef.current) return;
+
+    startX.current = e.clientX - sliderRef.current.offsetLeft;
+    scrollLeft.current = sliderRef.current.scrollLeft;
+    sliderRef.current.addEventListener('mousemove', handleMouseMove);
+    sliderRef.current.addEventListener('mouseup', handleMouseUp);
+    sliderRef.current.addEventListener('mouseleave', handleMouseUp);
   };
 
   const handleMouseMove = (e: MouseEvent) => {
@@ -47,18 +47,17 @@ const Cases: React.FC<CasesProps> = ({ workCells }) => {
     }
   };
 
-  // Mobile Touch Handlers
   const handleTouchStart = (e: React.TouchEvent) => {
-    if (sliderRef.current) {
-      startX.current = e.touches[0].clientX - sliderRef.current.offsetLeft;
-      scrollLeft.current = sliderRef.current.scrollLeft;
-    }
+    if (isMobile || !sliderRef.current) return;
+
+    startX.current = e.touches[0].clientX - sliderRef.current.offsetLeft;
+    scrollLeft.current = sliderRef.current.scrollLeft;
   };
 
   const handleTouchMove = (e: TouchEvent) => {
     if (sliderRef.current) {
       const x = e.touches[0].clientX - sliderRef.current.offsetLeft;
-      const walk = (x - startX.current) * 2; // Adjust scroll speed
+      const walk = (x - startX.current) * 2;
       sliderRef.current.scrollLeft = scrollLeft.current - walk;
     }
   };
@@ -70,19 +69,19 @@ const Cases: React.FC<CasesProps> = ({ workCells }) => {
     }
   };
 
-  // Attach touch events
-  React.useEffect(() => {
-    if (sliderRef.current) {
-      sliderRef.current.addEventListener('touchmove', handleTouchMove as EventListener, { passive: true });
-      sliderRef.current.addEventListener('touchend', handleTouchEnd as EventListener);
-    }
+  useEffect(() => {
+    if (isMobile || !sliderRef.current) return;
+
+    sliderRef.current.addEventListener('touchmove', handleTouchMove as EventListener, { passive: true });
+    sliderRef.current.addEventListener('touchend', handleTouchEnd as EventListener);
+
     return () => {
       if (sliderRef.current) {
         sliderRef.current.removeEventListener('touchmove', handleTouchMove as EventListener);
         sliderRef.current.removeEventListener('touchend', handleTouchEnd as EventListener);
       }
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <div className="cases-con">

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from 'framer-motion';
 import './workcell.sass';
 
@@ -12,16 +12,35 @@ interface WorkCellProps {
 const WorkCell: React.FC<WorkCellProps> = ({ posterImg, name, videoSrc }) => {
     const [isHovered, setIsHovered] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 450);
+
+    useEffect(() => {
+        // Update mobile state on screen resize
+        const handleResize = () => setIsMobile(window.innerWidth <= 450);
+        window.addEventListener("resize", handleResize);
+
+        // Autoplay video on mobile screens
+        if (isMobile && videoRef.current) {
+            videoRef.current.play();
+        }
+
+        // Clean up event listener on unmount
+        return () => window.removeEventListener("resize", handleResize);
+    }, [isMobile]);
 
     const handleMouseEnter = () => {
-        setIsHovered(true);
-        videoRef.current?.play(); 
+        if (!isMobile) {
+            setIsHovered(true);
+            videoRef.current?.play();
+        }
     };
 
     const handleMouseLeave = () => {
-        setIsHovered(false);
-        videoRef.current?.pause(); 
-        videoRef.current!.currentTime = 0; 
+        if (!isMobile) {
+            setIsHovered(false);
+            videoRef.current?.pause();
+            videoRef.current!.currentTime = 0;
+        }
     };
 
     return (
@@ -32,19 +51,18 @@ const WorkCell: React.FC<WorkCellProps> = ({ posterImg, name, videoSrc }) => {
         >
             <div className="case">
                 <div className="name">{name}</div>
-                {/* <div className="title">{title}</div> */}
             </div>
             <div className="work-cell__poster">
-                {!isHovered &&
-                 <img src={posterImg} alt={name} />
-                 }
+                {/* Conditionally render based on screen size */}
+                {!isMobile && !isHovered && <img src={posterImg} alt={name} />}
+                
                 <video 
                     ref={videoRef} 
                     src={videoSrc} 
-                    className={isHovered ? "show" : "hide"} 
+                    className={(isMobile || isHovered) ? "show" : "hide"} 
                     muted 
                     loop
-                ></video>
+                />
             </div>
         </motion.div>
     );

@@ -20,6 +20,7 @@ const Cases: React.FC<CasesProps> = ({ workCells }) => {
   const startX = useRef(0);
   const scrollLeft = useRef(0);
 
+  // Desktop Mouse Handlers
   const handleMouseDown = (e: React.MouseEvent) => {
     if (sliderRef.current) {
       startX.current = e.clientX - sliderRef.current.offsetLeft;
@@ -33,7 +34,7 @@ const Cases: React.FC<CasesProps> = ({ workCells }) => {
   const handleMouseMove = (e: MouseEvent) => {
     if (sliderRef.current) {
       const x = e.clientX - sliderRef.current.offsetLeft;
-      const walk = (x - startX.current) * 2; // Scroll-fast
+      const walk = (x - startX.current) * 2; // Adjust scroll speed
       sliderRef.current.scrollLeft = scrollLeft.current - walk;
     }
   };
@@ -41,9 +42,12 @@ const Cases: React.FC<CasesProps> = ({ workCells }) => {
   const handleMouseUp = () => {
     if (sliderRef.current) {
       sliderRef.current.removeEventListener('mousemove', handleMouseMove);
+      sliderRef.current.removeEventListener('mouseup', handleMouseUp);
+      sliderRef.current.removeEventListener('mouseleave', handleMouseUp);
     }
   };
 
+  // Mobile Touch Handlers
   const handleTouchStart = (e: React.TouchEvent) => {
     if (sliderRef.current) {
       startX.current = e.touches[0].clientX - sliderRef.current.offsetLeft;
@@ -51,13 +55,34 @@ const Cases: React.FC<CasesProps> = ({ workCells }) => {
     }
   };
 
-  const handleTouchMove = (e: React.TouchEvent) => {
+  const handleTouchMove = (e: TouchEvent) => {
     if (sliderRef.current) {
       const x = e.touches[0].clientX - sliderRef.current.offsetLeft;
-      const walk = (x - startX.current) * 2; // Scroll-fast
+      const walk = (x - startX.current) * 2; // Adjust scroll speed
       sliderRef.current.scrollLeft = scrollLeft.current - walk;
     }
   };
+
+  const handleTouchEnd = () => {
+    if (sliderRef.current) {
+      sliderRef.current.removeEventListener('touchmove', handleTouchMove);
+      sliderRef.current.removeEventListener('touchend', handleTouchEnd);
+    }
+  };
+
+  // Attach touch events
+  React.useEffect(() => {
+    if (sliderRef.current) {
+      sliderRef.current.addEventListener('touchmove', handleTouchMove as EventListener, { passive: true });
+      sliderRef.current.addEventListener('touchend', handleTouchEnd as EventListener);
+    }
+    return () => {
+      if (sliderRef.current) {
+        sliderRef.current.removeEventListener('touchmove', handleTouchMove as EventListener);
+        sliderRef.current.removeEventListener('touchend', handleTouchEnd as EventListener);
+      }
+    };
+  }, []);
 
   return (
     <div className="cases-con">
@@ -66,7 +91,6 @@ const Cases: React.FC<CasesProps> = ({ workCells }) => {
         ref={sliderRef}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
       >
         {Object.values(workCells).map((cellData, index) => (
           <div className="slide" key={index}>

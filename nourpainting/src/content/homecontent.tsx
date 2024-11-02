@@ -97,6 +97,12 @@ const homeContent={
       eamilAddress: "abdoakhras4@gmail.com" 
   },
   workCells:{
+    veno:{
+        posterImg:workCell_veno,
+        name:"Veno",
+        title:"veno",
+        videoSrc:workCell_veno_v,
+    },
     tvc:{
         posterImg:workCell_tvc,
         name:"WerkTalent",
@@ -109,18 +115,19 @@ const homeContent={
         title:"knab",
         videoSrc:trends,
     },
-    veno:{
-        posterImg:workCell_veno,
-        name:"Veno",
-        title:"veno",
-        videoSrc:workCell_veno_v,
-    },
+    
     knab1:{
         posterImg:workCell_knap,
         name:"knab",
         title:"knab",
         videoSrc:trends,
-    }
+    },
+    veno1:{
+        posterImg:workCell_veno,
+        name:"Veno",
+        title:"veno",
+        videoSrc:workCell_veno_v,
+    },
 }
 }
 export default homeContent
